@@ -25,19 +25,18 @@ public class Logic {
         boolean rst = false;
         boolean empty = true;
         try {
-            int index = this.findBy(source);
-            if (index != -1) {
-                Cell[] steps = this.figures[index].way(source, dest);
-//                for (int i = 0; i < steps.length; i++) { // почему-то рушится веськод из-за метода findBy
-//                    if (this.findBy(steps[i]) != -1) {
-//                        empty = false;
-//                        break;
-//                    }
-                if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
+            Cell[] steps = this.figures[findBy(source)].way(source, dest);
+            for (Cell step : steps) {
+                int index = this.findBy(step);
+                if (index != -1) {
+                    empty = false;
+                    break;
+                }
+            }
+                if (empty) {
                     rst = true;
                     this.figures[index] = this.figures[index].copy(dest);
                 }
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
