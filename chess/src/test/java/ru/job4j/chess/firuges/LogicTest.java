@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 public class LogicTest {
     @Test
-    public void whenNoMove(){
+    public void whenNoMove() {
         Logic logic = new Logic();
         logic.add(new BishopBlack(Cell.C1));
         logic.add(new BishopBlack(Cell.A1));
@@ -17,18 +17,17 @@ public class LogicTest {
     }
 
     @Test
-    public void whenMove(){
+    public void whenMove() {
         Logic logic = new Logic();
         logic.add(new BishopBlack(Cell.A1));
         logic.add(new BishopBlack(Cell.D2));
         assertThat(logic.move(Cell.C1, Cell.G5), is(false));
     }
 
-    @Test(expected = Exception.class)
-    public void whenExpected(){
+    @Test(expected = Throwable.class)
+    public void whenExpected() {
         Logic logic = new Logic();
-        logic.add(new BishopBlack(Cell.A1));
-        logic.move(Cell.A1, Cell.C1);
-
+        logic.add(new BishopBlack(Cell.C1));
+        logic.move(Cell.C1, Cell.A1);
     }
 }

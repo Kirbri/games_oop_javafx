@@ -37,7 +37,7 @@ public class Logic {
                     rst = true;
                     this.figures[index] = this.figures[index].copy(dest);
                 }
-        } catch (Exception e) {
+        } catch (Throwable e) {
             e.printStackTrace();
         }
         return rst;
@@ -63,8 +63,6 @@ public class Logic {
 
     @Override
     public String toString() {
-        return "Logic{" +
-                "figures=" + Arrays.toString(this.figures) +
-                '}';
+        return "Logic{" + "figures=" + Arrays.toString(this.figures) + "}";
     }
 }
