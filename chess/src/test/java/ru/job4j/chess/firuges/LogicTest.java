@@ -24,10 +24,10 @@ public class LogicTest {
         assertThat(logic.move(Cell.C1, Cell.G5), is(false));
     }
 
-    @Test(expected = Throwable.class)
+    @Test
     public void whenExpected() {
         Logic logic = new Logic();
         logic.add(new BishopBlack(Cell.C1));
-        logic.move(Cell.A1, Cell.C2);
+        assertFalse(logic.move(Cell.C1, Cell.A1));
     }
 }
