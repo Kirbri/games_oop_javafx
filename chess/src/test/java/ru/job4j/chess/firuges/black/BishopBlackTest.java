@@ -1,13 +1,11 @@
 package ru.job4j.chess.firuges.black;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.job4j.chess.ImpossibleMoveException;
 import ru.job4j.chess.firuges.Cell;
-import ru.job4j.chess.firuges.Figure;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 class BishopBlackTest {
 
@@ -16,7 +14,7 @@ class BishopBlackTest {
         BishopBlack bishopBlack = new BishopBlack(Cell.C8);
         Cell actualBishopBlack = bishopBlack.position();
         Cell expected = Cell.C8;
-        assertEquals(expected, actualBishopBlack);
+        assertThat(actualBishopBlack).isEqualTo(expected);
     }
 
     @Test
@@ -24,7 +22,7 @@ class BishopBlackTest {
         BishopBlack bishopBlack = new BishopBlack(Cell.F8);
         Cell actualFigureBishopBlack = bishopBlack.copy(Cell.A6).position();
         Cell expected = Cell.A6;
-        assertEquals(expected, actualFigureBishopBlack);
+        assertThat(actualFigureBishopBlack).isEqualTo(expected);
     }
 
     @Test
@@ -32,7 +30,7 @@ class BishopBlackTest {
         BishopBlack bishopBlack = new BishopBlack(Cell.C1);
         Cell[] actualBishopBlack = bishopBlack.way(Cell.G5);
         Cell[] expectedCell = new Cell[]{Cell.D2, Cell.E3, Cell.F4, Cell.G5};
-        assertEquals(expectedCell, actualBishopBlack);
+        assertThat(actualBishopBlack).isEqualTo(expectedCell);
     }
 
     @Test
@@ -40,7 +38,7 @@ class BishopBlackTest {
         BishopBlack bishopBlack = new BishopBlack(Cell.G5);
         Cell[] actualBishopBlack = bishopBlack.way(Cell.C1);
         Cell[] expectedCell = new Cell[]{Cell.F4, Cell.E3, Cell.D2, Cell.C1};
-        assertEquals(expectedCell, actualBishopBlack);
+        assertThat(actualBishopBlack).isEqualTo(expectedCell);
     }
 
     @Test
@@ -48,9 +46,7 @@ class BishopBlackTest {
         BishopBlack bishopBlack = new BishopBlack(Cell.C7);
         ImpossibleMoveException exception = assertThrows(
                 ImpossibleMoveException.class,
-                () -> {
-                    Cell[] actualBishopBlack = bishopBlack.way(Cell.C2);
-                });
-        Assertions.assertThat(exception.getMessage()).isEqualTo(String.format("Could not way by diagonal from %s to %s", Cell.C7, Cell.C2));
+                () -> bishopBlack.way(Cell.C2));
+        assertThat(exception.getMessage()).isEqualTo("Could not way by diagonal from C7 to C2");
     }
 }
